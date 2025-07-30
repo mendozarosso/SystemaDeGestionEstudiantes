@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Estudiantes ITLA</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container py-4">
+      
+        <div class="row mb-4">
+            <div class="col">
+                <div class="main-card card">
+                    <div class="card-body text-center py-4">
+                        <h1 class="mb-2">
+                            <i class="fas fa-graduation-cap text-primary"></i> 
+                            Sistema Estudiantes ITLA
+                        </h1>
+                        <p class="text-muted mb-0">Gestión Académica - Programación III | Jason Mendoza</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4" id="dashboard">
+            <div class="col-md-3 mb-3">
+                <div class="card stats-card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-users fa-2x mb-2"></i>
+                        <h3 id="totalStudents">0</h3>
+                        <small>Total Estudiantes</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card stats-card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-user-check fa-2x mb-2"></i>
+                        <h3 id="activeStudents">0</h3>
+                        <small>Activos</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card stats-card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-birthday-cake fa-2x mb-2"></i>
+                        <h3 id="avgAge">0</h3>
+                        <small>Edad Promedio</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card stats-card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-graduation-cap fa-2x mb-2"></i>
+                        <h3 id="totalCareers">0</h3>
+                        <small>Carreras</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="row mb-4">
+            <div class="col">
+                <div class="main-card card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-user-plus"></i> 
+                            <span id="formTitle">Agregar Estudiante</span>
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="studentForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="nombre" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Apellido</label>
+                                    <input type="text" class="form-control" id="apellido" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Matrícula</label>
+                                    <input type="text" class="form-control" id="matricula" placeholder="2024-001" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Carrera</label>
+                                    <select class="form-select" id="carrera" required>
+                                        <option value="">Seleccionar Carrera</option>
+                                        <option value="Ingeniería en Software">Ingeniería en Software</option>
+                                        <option value="Redes y Telecomunicaciones">Redes y Telecomunicaciones</option>
+                                        <option value="Desarrollo de Software">Desarrollo de Software</option>
+                                        <option value="Ciberseguridad">Ciberseguridad</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Edad</label>
+                                    <input type="number" class="form-control" id="edad" min="16" max="65" required>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> <span id="btnText">Guardar</span>
+                                </button>
+                                <button type="button" class="btn btn-secondary" id="cancelBtn" style="display:none">
+                                    <i class="fas fa-times"></i> Cancelar
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       
+        <div class="row mb-4">
+            <div class="col">
+                <div class="main-card card">
+                    <div class="card-header bg-info text-white">
+                        <h6 class="mb-0"><i class="fas fa-search"></i> Búsqueda y Filtros</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 mb-2">
+                                <input type="text" class="form-control" id="searchName" placeholder="Buscar por nombre, apellido o matrícula...">
+                            </div>
+                            <div class="col-md-3 mb-2">
+                                <select class="form-select" id="filterCareer">
+                                    <option value="">Todas las carreras</option>
+                                    <option value="Ingeniería en Software">Ingeniería en Software</option>
+                                    <option value="Redes y Telecomunicaciones">Redes y Telecomunicaciones</option>
+                                    <option value="Desarrollo de Software">Desarrollo de Software</option>
+                                    <option value="Ciberseguridad">Ciberseguridad</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 mb-2">
+                                <select class="form-select" id="filterStatus">
+                                    <option value="">Todos los estados</option>
+                                    <option value="true">Activos</option>
+                                    <option value="false">Inactivos</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 mb-2">
+                                <button class="btn btn-outline-secondary w-100" id="clearFiltersBtn">
+                                    <i class="fas fa-eraser"></i> Limpiar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Y aqui la lista de estudiantes -->
+        <div class="row">
+            <div class="col">
+                <div class="main-card card">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0"><i class="fas fa-users"></i> Lista de Estudiantes</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="studentsList" class="row"></div>
+                        <div id="noResults" class="text-center text-muted py-5" style="display:none">
+                            <i class="fas fa-search fa-4x mb-3 opacity-50"></i>
+                            <h5>No se encontraron estudiantes</h5>
+                            <p>Intenta ajustar los filtros de búsqueda</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
+  
+    <script src="js/utils.js"></script>
+    <script src="js/students.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
